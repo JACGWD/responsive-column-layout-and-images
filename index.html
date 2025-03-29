@@ -100,13 +100,13 @@
             }
 
             img.default-image {
-            width: 373px;
+            width: 23.3125rem;
             /* 373 css pixels = 746 images pixels
             on a 2x display = 800px img required */
         }
 
         figcaption {
-            max-width: 373px;
+            max-width: 23.3125rem;
         }
 
             .desktop-explanations {display: block;}
@@ -123,30 +123,43 @@
 
         <figure class="column1">
             <picture>
+              <!-- This source starts at 800px, but has two columns, so we want the image to be 400px max -->
                 <source
-                media="(max-width: calc(50rem - 1px))"
+                media="(min-width: 50rem) and (orientation: landscape)"
+                type="image/png"
                 srcset="
-                img/png-square-600w.png 600w,
-                img/png-square-480w.png 480w,
-                img/png-square-240w.png 240w
-                ";
-                sizes="calc(100vw - 2rem)";>
+                    img/png-landscape-2048w.png 2048w,
+                    img/png-landscape-1554w.png 1554w,
+                    img/png-landscape-1280w.png 1280w,
+                    img/png-landscape-1024w.png 1024w,
+                    img/png-landscape-800w.png 800w,
+                    img/png-landscape-600w.png 600w,
+                    img/png-landscape-480w.png 480w,
+                    img/png-landscape-240w.png 240w"
+                sizes="23.3125rem">
 
                 <source
-                media="(min-width: 50rem)"
-                
+                media="(min-width: 50rem) and (orientation: portrait)"
+                type="image/png"
                 srcset="
-                img/png-square-2048w.png 2048w,
-                img/png-square-1554w.png 1554w,
-                img/png-square-1280w.png 1280w,
-                img/png-square-1024w.png 1024w,
-                img/png-square-800w.png 800w,
-                img/png-square-600w.png 6000w,
-                img/png-square-480w.png 480w,
-                img/png-square-240w.png 240w
-                ";
-                sizes="373px";>
-                <!-- This source starts at 800px, but has two columns, so we want the image to be 400px max -->
+                    img/png-portrait-2048w.png 2048w,
+                    img/png-portrait-1554w.png 1554w,
+                    img/png-portrait-1280w.png 1280w,
+                    img/png-portrait-1024w.png 1024w,
+                    img/png-portrait-800w.png 800w,
+                    img/png-portrait-600w.png 600w,
+                    img/png-portrait-480w.png 480w,
+                    img/png-portrait-240w.png 240w"
+                sizes="23.3125rem">
+
+                <!-- Always place shorter/less specific media queries at the bottom -->
+                <source
+                media="(max-width: calc(50rem - 1px))"
+                type="image/svg+xml"
+                srcset="img/svg-square.svg 800w"
+                sizes="calc(100vw - 2rem)">
+                <!-- Note that since SVGs are resolution independent, we can say that the SVG is the same size as the box  -->
+
 
                 <img src="img/png-square-600w.png" class="default-image" alt="default demo image">
                 <!-- If the browser cannot process the srcset, the default image gets loaded -->
@@ -289,42 +302,6 @@ closing media query bracket */
     </div>
 
 
-    <section>
-
-        <h2>Understanding Border Box</h2>
-
-        <h3>Without the CSS box-sizing property</h3>
-
-        <p>By default, the width and height of an element is calculated like this:</p>
-<ul>
-    <li>width + padding + border = actual width of an element</li>
-    <li>height + padding + border = actual height of an element</li>
-</ul>
-            
-            
-
-        <h3>With the CSS box-sizing property</h3>
-
-        <p>The <strong>box-sizing</strong> property allows us to <span style="color:red">include the padding and border</span> in an element's total width and height.</p>
-
-        <p>See: <a href="https://www.w3schools.com/csS/css3_box-sizing.asp">https://www.w3schools.com/csS/css3_box-sizing.asp</a></p>
-    </section>
-
-    <section>
-<h2>Understanding the image width for mobile</h2>
-
-<img src="./img/320px-explanation.png" alt="mobile width calculation">
-
-
-    </section>
-
-    <section>
-        <h2>Understanding the image width for desktop</h2>
-        
-        <img src="./img/800px-explanation.png" alt="desktop width calculation">
-        
-        
-            </section>
     
 </body>
 </html>
