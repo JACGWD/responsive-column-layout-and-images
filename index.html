@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive column layout and images</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        img {
+            max-width: 100%; 
+            height: auto;
+        }
+
+        img.default-image {
+            display: block;
+            margin: 0 auto;
+            width: 284px;
+            /* 284 css pixels = 568 images pixels
+             on a 2x display */
+
+            /* If my image is never displayed any
+             bigger than 300px, Ii do not need
+            a file wider than 600px in the srcset */
+        }
+
+        .flex-container {
+                border: 1px solid #ff0000;
+                padding: 1rem;
+                margin: 0;
+            }
+
+        figure {
+            border: 1px solid #444;
+            margin: 1rem auto;
+            padding: 0;
+        }
+
+        figcaption {
+            margin: 1rem auto;
+            max-width: 284px;
+            /* match width of image for alignment */
+        }
+
+        code {
+            white-space: pre;
+            color: blue;
+        }
+
+        section {
+            margin: 1rem 1rem 3rem 1rem;
+            padding: 1rem;
+            border: 1px solid #444;
+        }
+
+        h1 {margin: 0 0 2rem 0;}
+
+        section > h2 {margin-top: 0;}
+
+        h2, h3 {
+            margin: 2em 0em 1em 0em;
+        }
+
+        p, li {
+            margin: 1em 0;
+        }
+
+        ul {
+            margin-left: 2rem;
+        }
+
+        .desktop-explanations {display: none;}
+
+        @media screen and (min-width: 50rem) {
+            /* 50rem = 800px */
+
+            .flex-container {
+                display: flex;
+                column-gap: 1rem;
+                width: 800px;
+                margin: 0 auto;
+            }
+
+            .column1, .column2 {
+                flex-basis: 50%; 
+                border: 1px solid rgb(9, 255, 0);
+                padding: 0;
+                margin: 0;
+                overflow: scroll;
+            }
+
+            img.default-image {
+            width: 373px;
+            /* 373 css pixels = 746 images pixels
+            on a 2x display = 800px img required */
+        }
+
+        figcaption {
+            max-width: 373px;
+        }
+
+            .desktop-explanations {display: block;}
+
+        } /* always comment the closing media query bracket */
+
+    </style>
+</head>
+<body>
+
+    <h1>Responsive column layout and images</h1>
+
+    <div class="flex-container">
+
+        <figure class="column1">
+            <picture>
+                <source
+                media="(max-width: calc(50rem - 1px))"
+                srcset="
+                img/png-square-600w.png 600w,
+                img/png-square-480w.png 480w,
+                img/png-square-240w.png 240w
+                ";
+                sizes="calc(100vw - 2rem)";>
+
+                <source
+                media="(min-width: 50rem)"
+                
+                srcset="
+                img/png-square-2048w.png 2048w,
+                img/png-square-1554w.png 1554w,
+                img/png-square-1280w.png 1280w,
+                img/png-square-1024w.png 1024w,
+                img/png-square-800w.png 800w,
+                img/png-square-600w.png 6000w,
+                img/png-square-480w.png 480w,
+                img/png-square-240w.png 240w
+                ";
+                sizes="373px";>
+                <!-- This source starts at 800px, but has two columns, so we want the image to be 400px max -->
+
+                <img src="img/png-square-600w.png" class="default-image" alt="default demo image">
+                <!-- If the browser cannot process the srcset, the default image gets loaded -->
+
+            </picture>
+
+            <figcaption>
+Ea anim officia ipsum reprehenderit laborum incididunt mollit irure occaecat id dolor pariatur ex. Aliqua velit non do consequat nostrud. Reprehenderit Lorem aliquip laboris consectetur dolor ea deserunt. In elit tempor excepteur deserunt. Est dolore magna fugiat aliquip nostrud mollit exercitation duis ad pariatur qui.
+            </figcaption>
+        </figure>
+
+
+        <div class="column2">
+
+            <h2>Active CSS Rules</h2>
+
+            <div class="mobile-explanations">
+                <h3>Default CSS Rules (always active)</h3>
+                <code>
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+    max-width: 100%; 
+    height: auto;
+}
+
+img.default-image {
+    display: block;
+    margin: 0 auto;
+    width: 284px;
+    /* 284 css pixels = 568 images pixels
+        on a 2x display */
+
+    /* If my image is never displayed any
+        bigger than 300px, Ii do not need
+    a file wider than 600px in the srcset */
+}
+
+.flex-container {
+        border: 1px solid #ff0000;
+        padding: 1rem;
+        margin: 0;
+    }
+
+figure {
+    border: 1px solid #444;
+    margin: 1rem auto;
+    padding: 0;
+}
+
+figcaption {
+    margin: 1rem auto;
+    max-width: 284px;
+    /* match width of image for alignment */
+}
+
+code {
+    white-space: pre;
+    color: blue;
+}
+
+section {
+    margin: 1rem 1rem 3rem 1rem;
+    padding: 1rem;
+    border: 1px solid #444;
+}
+
+h1 {margin: 0 0 2rem 0;}
+
+section > h2 {margin-top: 0;}
+
+h2, h3 {
+    margin: 2em 0em 1em 0em;
+}
+
+p, li {
+    margin: 1em 0;
+}
+
+ul {
+    margin-left: 2rem;
+}
+
+.desktop-explanations {display: none;}
+</code>
+
+            </div>
+
+            <div class="desktop-explanations">
+
+                <h3>CSS Rules active in the media query</h3>
+<code>
+@media screen and (min-width: 50rem) {
+/* 50rem = 800px */
+
+.flex-container {
+    display: flex;
+    column-gap: 1rem;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.column1, .column2 {
+    flex-basis: 50%; 
+    border: 1px solid rgb(9, 255, 0);
+    padding: 0;
+    margin: 0;
+    overflow: scroll;
+}
+
+img.default-image {
+width: 373px;
+/* 373 css pixels = 746 images pixels
+on a 2x display = 800px img required */
+}
+
+figcaption {
+max-width: 373px;
+}
+
+.desktop-explanations {display: block;}
+
+} /* always comment the 
+closing media query bracket */
+</code>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <section>
+
+        <h2>Understanding Border Box</h2>
+
+        <h3>Without the CSS box-sizing property</h3>
+
+        <p>By default, the width and height of an element is calculated like this:</p>
+<ul>
+    <li>width + padding + border = actual width of an element</li>
+    <li>height + padding + border = actual height of an element</li>
+</ul>
+            
+            
+
+        <h3>With the CSS box-sizing property</h3>
+
+        <p>The <strong>box-sizing</strong> property allows us to <span style="color:red">include the padding and border</span> in an element's total width and height.</p>
+
+        <p>See: <a href="https://www.w3schools.com/csS/css3_box-sizing.asp">https://www.w3schools.com/csS/css3_box-sizing.asp</a></p>
+    </section>
+
+    <section>
+<h2>Understanding the image width for mobile</h2>
+
+<img src="./img/320px-explanation.png" alt="mobile width calculation">
+
+
+    </section>
+
+    <section>
+        <h2>Understanding the image width for desktop</h2>
+        
+        <img src="./img/800px-explanation.png" alt="desktop width calculation">
+        
+        
+            </section>
+    
+</body>
+</html>
