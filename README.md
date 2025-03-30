@@ -36,9 +36,10 @@ If you use different file types (ex: jpg and svg), you will want to tell the bro
             <picture>
                 <source
                 media="(max-width: calc(50rem - 1px))"
-                    type="image/svg+xml"
-                    srcset="img/svg-square.svg";
-                sizes="calc(100vw - 2rem)";>
+                type="image/svg+xml"
+                srcset="img/svg-square.svg 800w"
+                sizes="calc(100vw - 2rem)">
+                <!-- Note that since SVGs are resolution independent, we can say that the SVG is the same size as the box  -->
 
                 <source
                 media="(min-width: 50rem)"
@@ -46,9 +47,8 @@ If you use different file types (ex: jpg and svg), you will want to tell the bro
                     srcset="
                         img/png-square-600w.png 600w,
                         img/png-square-480w.png 480w,
-                        img/png-square-240w.png 240w
-                    ";
-                sizes="373px";>
+                        img/png-square-240w.png 240w"
+                sizes="23.3125rem">
 
                 <img src="img/png-square-600w.png" class="default-image" alt="default demo image">
                 <!-- If the browser cannot process the srcset, the default image gets loaded -->
