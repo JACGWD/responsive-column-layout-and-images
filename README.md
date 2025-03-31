@@ -1,4 +1,4 @@
-# responsive-column-layout-and-images
+# Responsive multi-column web page layout with images
 
 Demo for using column layout and HTML picture tags
 
@@ -9,11 +9,11 @@ You can simply [download this entire repo as a zip archive](https://github.com/J
 
 ## Tips & Gotchas
 
-This section contains different tips & tricks that will help your responsiveness function properly.
+### This section contains different tips & tricks that will help your responsiveness function properly.
 
-### Using different image types?
+#### 1. Using different image types?
 
-#### Use "MIME Types" to identify the file format
+##### Use "MIME Types" to identify the file format
 
 If you use different file types (ex: jpg and svg), you will want to tell the browser which one is which within your picture tag. **The browser does not use the file extension for this.** It uses [MIME types](https://www.iana.org/assignments/media-types/media-types.xhtml#image).
 
@@ -31,7 +31,7 @@ If you use different file types (ex: jpg and svg), you will want to tell the bro
 
 **Important Note:** Always check to make sure web browsers support an image file type before using it. It is best to stick with well supported file types: apng (animated png), jpg, png, gif, svg and webp. For example [check the .heif page on caiuse.com](https://caniuse.com/heif)
 
-#### Example Code
+##### Example Code
 
             <picture>
                 <source
@@ -54,39 +54,55 @@ If you use different file types (ex: jpg and svg), you will want to tell the bro
                 <!-- If the browser cannot process the srcset, the default image gets loaded -->
             </picture>    
 
-#### Links
+##### Links
 
 [https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types](https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types)
 
 [https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types)
 
 
-### Consider \<source> Order for Proper Rendering
+#### 2. Consider \<source> Order for Proper Rendering
 
-When constructing \<picture> elements, it is crucial to remember the order of \<source> elements. **The browser will stop evaluating the remaining \<source> elements when it encounters one with a media attribute that evaluates to true.** Therefore, it is crucial to prioritize media queries with higher specificity by placing them first.
+When constructing \<picture> elements, it is crucial to remember the order of \<source> elements. **The browser will stop evaluating the remaining \<source> elements when it encounters one with a media attribute that evaluates to true.** Therefore, it is crucial to prioritize **media queries with higher specificity by placing them first**.
 
-### Understanding Border Box
+##### Example Code
 
-#### Without the CSS box-sizing property
+        @media screen and (min-width: 50rem) and (orientation: portrait) {
+            /* place longer/more specific media queries first */
+
+            body {background-color: white;}
+
+        }
+
+        @media screen {
+            /* place shorter/more general media queries last */
+
+            body {background-color: blue;}
+        }
+
+
+#### 3. Understanding Border Box
+
+##### 3.1 Without the CSS box-sizing property
 
 By default, the width and height of an element is calculated like this:
 
 - width + padding + border = actual width of an element
 - height + padding + border = actual height of an element
 
-#### With the CSS box-sizing property
+##### 3.2 With the CSS box-sizing property
 
 The **box-sizing** property allows us to <span style="color:red">include the padding and border</span> in an element's total width and height.
 
 See: [https://www.w3schools.com/csS/css3_box-sizing.asp](https://www.w3schools.com/csS/css3_box-sizing.asp)
 
 
-### Understanding the image width for mobile
+#### 4. Understanding the image width for mobile
 
 <img src="./img/320px-explanation.png" alt="mobile width calculation">
 
 
-### Understanding the image width for desktop
+#### 5. Understanding the image width for desktop
         
 <img src="./img/800px-explanation.png" alt="desktop width calculation">
         
